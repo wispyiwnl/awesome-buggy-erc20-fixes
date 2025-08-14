@@ -21,5 +21,4 @@ contract ERC20WithNameTest is Test {
         string memory tokenName = token.name();
         assertEq(tokenName, "MyToken");
     }
-
 }

@@ -6,7 +6,7 @@ import {OwnerManaged} from "../../src/ERC20/A17.sol";
 
 contract OwnerManagedTest is Test {
     OwnerManaged ownerManaged;
-    
+
     address newOwnerAddr = makeAddr("newOwnerAddr");
     address attacker = makeAddr("attacker");
 

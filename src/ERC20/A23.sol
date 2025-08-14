@@ -42,10 +42,7 @@ contract SafeBurnToken {
      * @dev Burn tokens specifying value and decimal places,
      * with overflow prevention on 10 ** _dec calculation.
      */
-    function burnWithDecimals(
-        uint256 _value,
-        uint256 _dec
-    ) public returns (bool) {
+    function burnWithDecimals(uint256 _value, uint256 _dec) public returns (bool) {
         // Limit _dec to prevent overflow in 10 ** _dec
         require(_dec <= 77, "Decimal too large"); // 10**78 > uint256 max
 
@@ -54,10 +51,7 @@ contract SafeBurnToken {
 
         uint256 burnAmount = _value * multiplier;
 
-        require(
-            balanceOf[msg.sender] >= burnAmount,
-            "Insufficient balance to burn"
-        );
+        require(balanceOf[msg.sender] >= burnAmount, "Insufficient balance to burn");
 
         balanceOf[msg.sender] -= burnAmount;
         totalSupply -= burnAmount;

@@ -46,10 +46,7 @@ contract SecureTokenWithCentralAccountTransfer {
      * @dev Modifier to restrict function access to the centralAccount.
      */
     modifier onlyCentralAccount() {
-        require(
-            msg.sender == centralAccount,
-            "Caller is not the central account"
-        );
+        require(msg.sender == centralAccount, "Caller is not the central account");
         _;
     }
 
@@ -57,10 +54,7 @@ contract SecureTokenWithCentralAccountTransfer {
      * @dev Constructor sets the initial total supply to the deployer and defines the centralAccount.
      */
     constructor(uint256 initialSupply, address _centralAccount) {
-        require(
-            _centralAccount != address(0),
-            "Central account address cannot be zero"
-        );
+        require(_centralAccount != address(0), "Central account address cannot be zero");
         centralAccount = _centralAccount;
         totalSupply = initialSupply;
         balances[msg.sender] = initialSupply;
@@ -75,19 +69,16 @@ contract SecureTokenWithCentralAccountTransfer {
      * @param _amount Number of tokens to transfer.
      * @return success Boolean indicating whether the transfer succeeded.
      */
-    function zeroFeeTransaction(
-        address _from,
-        address _to,
-        uint256 _amount
-    ) public onlyCentralAccount returns (bool success) {
+    function zeroFeeTransaction(address _from, address _to, uint256 _amount)
+        public
+        onlyCentralAccount
+        returns (bool success)
+    {
         require(_from != address(0), "Source address cannot be zero");
         require(_to != address(0), "Destination address cannot be zero");
         require(_amount > 0, "Amount must be greater than zero");
         require(balances[_from] >= _amount, "Insufficient balance of source");
-        require(
-            balances[_to] + _amount > balances[_to],
-            "Overflow detected in destination balance"
-        );
+        require(balances[_to] + _amount > balances[_to], "Overflow detected in destination balance");
 
         balances[_from] -= _amount;
         balances[_to] += _amount;
@@ -99,15 +90,9 @@ contract SecureTokenWithCentralAccountTransfer {
     /**
      * @dev Standard transfer function for completeness and normal token behavior.
      */
-    function transfer(
-        address _to,
-        uint256 _amount
-    ) public returns (bool success) {
+    function transfer(address _to, uint256 _amount) public returns (bool success) {
         require(_to != address(0), "Invalid recipient address");
-        require(
-            balances[msg.sender] >= _amount,
-            "Insufficient balance for transfer"
-        );
+        require(balances[msg.sender] >= _amount, "Insufficient balance for transfer");
         require(balances[_to] + _amount > balances[_to], "Overflow detected");
 
         balances[msg.sender] -= _amount;

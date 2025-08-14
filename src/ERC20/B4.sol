@@ -17,7 +17,7 @@ pragma solidity ^0.8.13;
 contract ERC20WithDecimals {
     string public name = "ERC20WithDecimals";
     string public symbol = "EWD";
-    uint8 public decimals;  // lowercase as per recommended practice
+    uint8 public decimals; // lowercase as per recommended practice
     uint256 public totalSupply;
 
     mapping(address => uint256) public balanceOf;

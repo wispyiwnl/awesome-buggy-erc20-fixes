@@ -24,12 +24,7 @@ contract ERC20WithSymbol {
 
     event Transfer(address indexed from, address indexed to, uint256 value);
 
-    constructor(
-        string memory tokenName,
-        string memory tokenSymbol,
-        uint8 tokenDecimals,
-        uint256 initialSupply
-    ) {
+    constructor(string memory tokenName, string memory tokenSymbol, uint8 tokenDecimals, uint256 initialSupply) {
         name = tokenName;
         symbol = tokenSymbol;
         decimals = tokenDecimals;

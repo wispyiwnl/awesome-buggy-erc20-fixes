@@ -11,11 +11,7 @@ contract ApprovalEventTokenTest is Test {
     address attacker = makeAddr("attacker");
 
     event Transfer(address indexed from, address indexed to, uint256 value);
-    event Approval(
-        address indexed owner,
-        address indexed spender,
-        uint256 value
-    );
+    event Approval(address indexed owner, address indexed spender, uint256 value);
 
     function setUp() public {
         owner = address(this);
@@ -35,11 +31,7 @@ contract ApprovalEventTokenTest is Test {
         assertTrue(success, "Approve should return true");
 
         uint256 allowanceAmount = token.allowance(owner, spender);
-        assertEq(
-            allowanceAmount,
-            approveAmount,
-            "Allowance should be updated correctly"
-        );
+        assertEq(allowanceAmount, approveAmount, "Allowance should be updated correctly");
     }
 
     /*
@@ -47,11 +39,7 @@ contract ApprovalEventTokenTest is Test {
      */
     function testAllowanceZeroWhenNotApproved() public view {
         uint256 allowanceAmount = token.allowance(owner, attacker);
-        assertEq(
-            allowanceAmount,
-            0,
-            "Allowance for unapproved spender should be zero"
-        );
+        assertEq(allowanceAmount, 0, "Allowance for unapproved spender should be zero");
     }
 
     /*

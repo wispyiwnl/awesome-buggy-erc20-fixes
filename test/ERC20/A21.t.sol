@@ -27,20 +27,13 @@ contract CheckEffectInconsistencyFixedTokenTest is Test {
 
         vm.prank(spender);
         bool success = token.transferFrom(owner, recipient, amount);
-        assertTrue(
-            success,
-            "transferFrom should succeed for authorized spender"
-        );
+        assertTrue(success, "transferFrom should succeed for authorized spender");
 
         assertEq(token.balances(owner), token.totalSupply() - amount);
         assertEq(token.balances(recipient), amount);
 
         uint256 remainingAllowance = token.allowed(owner, spender);
-        assertEq(
-            remainingAllowance,
-            50 * 10 ** 18,
-            "Allowance should decrease correctly"
-        );
+        assertEq(remainingAllowance, 50 * 10 ** 18, "Allowance should decrease correctly");
     }
 
     /*

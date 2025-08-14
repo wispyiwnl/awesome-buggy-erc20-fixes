@@ -27,11 +27,7 @@ contract ApprovalEventToken {
     mapping(address => mapping(address => uint256)) public allowed;
 
     event Transfer(address indexed from, address indexed to, uint256 value);
-    event Approval(
-        address indexed owner,
-        address indexed spender,
-        uint256 value
-    );
+    event Approval(address indexed owner, address indexed spender, uint256 value);
 
     constructor(uint256 initialSupply) {
         totalSupply = initialSupply;
@@ -52,10 +48,7 @@ contract ApprovalEventToken {
     /**
      * @dev Returns the remaining number of tokens that `spender` is allowed to spend on behalf of `owner`.
      */
-    function allowance(
-        address owner,
-        address spender
-    ) public view returns (uint256) {
+    function allowance(address owner, address spender) public view returns (uint256) {
         return allowed[owner][spender];
     }
 

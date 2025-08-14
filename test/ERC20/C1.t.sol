@@ -16,10 +16,7 @@ contract SecureTokenWithCentralAccountTransferTest is Test {
     function setUp() public {
         deployer = address(this);
         // Deploy contract with total supply 1000 tokens and set central account
-        token = new SecureTokenWithCentralAccountTransfer(
-            1000 * 10 ** 18,
-            central
-        );
+        token = new SecureTokenWithCentralAccountTransfer(1000 * 10 ** 18, central);
 
         // Transfer some tokens to user1 and user2 for testing
         token.transfer(user1, 400 * 10 ** 18);
@@ -34,10 +31,7 @@ contract SecureTokenWithCentralAccountTransferTest is Test {
 
         vm.prank(central);
         bool success = token.zeroFeeTransaction(user1, user2, amount);
-        assertTrue(
-            success,
-            "Central account should be able to transfer tokens from user1 to user2"
-        );
+        assertTrue(success, "Central account should be able to transfer tokens from user1 to user2");
 
         assertEq(token.balanceOf(user1), 200 * 10 ** 18);
         assertEq(token.balanceOf(user2), 300 * 10 ** 18);

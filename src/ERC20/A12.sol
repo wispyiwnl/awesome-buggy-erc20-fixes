@@ -58,9 +58,7 @@ contract TransferProxyExample {
         require(_from != address(0), "Invalid _from address");
 
         // Construct hash of transfer details including nonce and name
-        bytes32 hash = keccak256(
-            abi.encodePacked(_from, _to, _value, _feeSmt, nonces[_from], name)
-        );
+        bytes32 hash = keccak256(abi.encodePacked(_from, _to, _value, _feeSmt, nonces[_from], name));
 
         // Recover signer address from signature
         address signer = ecrecover(hash, _v, _r, _s);

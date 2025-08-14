@@ -11,11 +11,7 @@ contract CorrectConstructorUsageTest is Test {
 
     function setUp() public {
         deployer = address(this);
-        token = new CorrectConstructorUsage(
-            1_000_000 * 10 ** 18,
-            "CorrectToken",
-            "CTK"
-        );
+        token = new CorrectConstructorUsage(1_000_000 * 10 ** 18, "CorrectToken", "CTK");
     }
 
     /*
@@ -28,5 +24,4 @@ contract CorrectConstructorUsageTest is Test {
         assertEq(token.symbol(), "CTK");
         assertEq(token.owner(), deployer);
     }
-
 }

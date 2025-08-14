@@ -64,10 +64,7 @@ contract CorrectedImplementation {
     }
 
     // Example of a paused transfer function
-    function transfer(
-        address to,
-        uint256 amount
-    ) external isTokenTransfer returns (bool) {
+    function transfer(address to, uint256 amount) external isTokenTransfer returns (bool) {
         return true;
     }
 }

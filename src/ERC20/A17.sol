@@ -13,7 +13,6 @@ function setOwner(address _owner) returns (bool success) {
 
 pragma solidity ^0.8.13;
 
-
 /*
  * Simple contract demonstrating owner management.
  * Vulnerability: setOwner() is public and can be called by anyone.

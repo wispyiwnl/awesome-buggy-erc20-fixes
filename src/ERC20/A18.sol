@@ -34,11 +34,7 @@ contract AllowAnyoneFixedToken {
     mapping(address => mapping(address => uint256)) public allowed;
 
     event Transfer(address indexed from, address indexed to, uint256 value);
-    event Approval(
-        address indexed owner,
-        address indexed spender,
-        uint256 value
-    );
+    event Approval(address indexed owner, address indexed spender, uint256 value);
 
     constructor(uint256 initialSupply) {
         totalSupply = initialSupply;
@@ -50,11 +46,7 @@ contract AllowAnyoneFixedToken {
      * transferFrom corrected to include proper allowance check.
      * Prevents unauthorized transfer attempts and underflow on allowance.
      */
-    function transferFrom(
-        address _from,
-        address _to,
-        uint256 _value
-    ) public returns (bool) {
+    function transferFrom(address _from, address _to, uint256 _value) public returns (bool) {
         require(_to != address(0), "Invalid recipient");
         require(balances[_from] >= _value, "Insufficient balance");
         require(allowed[_from][msg.sender] >= _value, "Allowance exceeded");

@@ -33,14 +33,7 @@ contract TransferProxyTest is Test {
         uint256 amount = 5;
         uint256 nonce = token.nonces(address(0));
 
-        bytes32 hash = getTransferDataHash(
-            address(0),
-            receiver,
-            amount,
-            fee,
-            nonce,
-            token.name()
-        );
+        bytes32 hash = getTransferDataHash(address(0), receiver, amount, fee, nonce, token.name());
 
         (uint8 v, bytes32 r, bytes32 s) = vm.sign(privateKey, hash);
 

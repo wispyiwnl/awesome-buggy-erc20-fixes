@@ -12,7 +12,6 @@ receiver.call.value(0)(byte4(keccak256(_custom_fallback)), _from, amout, data);
 
 pragma solidity ^0.8.13;
 
-
 /*
  * Interface for fixed signature token receiver
  */
@@ -66,7 +65,7 @@ contract CustomCallSafeToken {
     }
 
     function isContract(address addr) internal view returns (bool) {
-        uint size;
+        uint256 size;
         assembly {
             size := extcodesize(addr)
         }

@@ -31,14 +31,10 @@ contract ApproveProxyExample {
      * approveProxy uses keccak256 and ecrecover to verify a signed approval.
      * Correctly rejects zero address _from to prevent bypass.
      */
-    function approveProxy(
-        address _from,
-        address _spender,
-        uint256 _value,
-        uint8 _v,
-        bytes32 _r,
-        bytes32 _s
-    ) public returns (bool) {
+    function approveProxy(address _from, address _spender, uint256 _value, uint8 _v, bytes32 _r, bytes32 _s)
+        public
+        returns (bool)
+    {
         require(_from != address(0), "Invalid _from address");
 
         // Compute the hash of approval parameters with nonce and name

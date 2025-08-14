@@ -40,10 +40,7 @@ contract TransferReturnsBoolToken {
      * @dev ERC20 transfer function properly returns bool indicating success.
      * Returns true only if transfer succeeds, otherwise reverts.
      */
-    function transfer(
-        address _to,
-        uint256 _value
-    ) public returns (bool success) {
+    function transfer(address _to, uint256 _value) public returns (bool success) {
         require(_to != address(0), "Invalid recipient");
         require(balanceOf[msg.sender] >= _value, "Insufficient balance");
         require(balanceOf[_to] + _value >= balanceOf[_to], "Overflow detected");

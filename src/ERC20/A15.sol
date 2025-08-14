@@ -101,7 +101,7 @@ contract CustomFallbackSafeToken {
      * Checks if an address is a contract.
      */
     function isContract(address addr) internal view returns (bool) {
-        uint size;
+        uint256 size;
         assembly {
             size := extcodesize(addr)
         }

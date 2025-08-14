@@ -11,7 +11,7 @@ contract ERC20WithDecimalsTest is Test {
 
     function setUp() public {
         deployer = address(this);
-        token = new ERC20WithDecimals(1000, 18);  // initialSupply = 1000 tokens with 18 decimals
+        token = new ERC20WithDecimals(1000, 18); // initialSupply = 1000 tokens with 18 decimals
     }
 
     /*

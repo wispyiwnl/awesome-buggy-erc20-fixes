@@ -43,11 +43,7 @@ contract CorrectConstructorUsage {
      * Proper constructor declaration using the `constructor` keyword.
      * Initializes total supply and assigns it to deployer, sets token name and symbol.
      */
-    constructor(
-        uint256 initialSupply,
-        string memory tokenName,
-        string memory tokenSymbol
-    ) {
+    constructor(uint256 initialSupply, string memory tokenName, string memory tokenSymbol) {
         totalSupply = initialSupply;
         balanceOf[msg.sender] = initialSupply;
         name = tokenName;

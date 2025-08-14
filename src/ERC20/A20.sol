@@ -23,11 +23,7 @@ contract ReApproveSafeToken {
     mapping(address => mapping(address => uint256)) public allowed;
 
     event Transfer(address indexed from, address indexed to, uint256 value);
-    event Approval(
-        address indexed owner,
-        address indexed spender,
-        uint256 value
-    );
+    event Approval(address indexed owner, address indexed spender, uint256 value);
 
     constructor(uint256 initialSupply) {
         totalSupply = initialSupply;
@@ -48,10 +44,7 @@ contract ReApproveSafeToken {
     /**
      * @dev Safely increase allowance to mitigate race condition in approve.
      */
-    function increaseApproval(
-        address spender,
-        uint256 addedValue
-    ) public returns (bool) {
+    function increaseApproval(address spender, uint256 addedValue) public returns (bool) {
         allowed[msg.sender][spender] += addedValue;
         emit Approval(msg.sender, spender, allowed[msg.sender][spender]);
         return true;
@@ -60,10 +53,7 @@ contract ReApproveSafeToken {
     /**
      * @dev Safely decrease allowance to mitigate race condition in approve.
      */
-    function decreaseApproval(
-        address spender,
-        uint256 subtractedValue
-    ) public returns (bool) {
+    function decreaseApproval(address spender, uint256 subtractedValue) public returns (bool) {
         uint256 currentAllowance = allowed[msg.sender][spender];
         if (subtractedValue >= currentAllowance) {
             allowed[msg.sender][spender] = 0;
@@ -77,11 +67,7 @@ contract ReApproveSafeToken {
     /**
      * @dev Standard transferFrom implementation.
      */
-    function transferFrom(
-        address from,
-        address to,
-        uint256 value
-    ) public returns (bool) {
+    function transferFrom(address from, address to, uint256 value) public returns (bool) {
         require(to != address(0), "Invalid recipient");
         require(balances[from] >= value, "Insufficient balance");
         require(allowed[from][msg.sender] >= value, "Allowance exceeded");
@@ -111,10 +97,7 @@ contract ReApproveSafeToken {
     /**
      * @dev Allowance query.
      */
-    function allowance(
-        address owner,
-        address spender
-    ) public view returns (uint256) {
+    function allowance(address owner, address spender) public view returns (uint256) {
         return allowed[owner][spender];
     }
 }

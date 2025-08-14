@@ -7,11 +7,7 @@ import {IERC223Receiver, CustomFallbackSafeToken} from "../../src/ERC20/A15.sol"
 contract ReceiverMock is IERC223Receiver {
     event TokenFallbackCalled(address from, uint256 value, bytes data);
 
-    function tokenFallback(
-        address from,
-        uint256 value,
-        bytes calldata data
-    ) external override {
+    function tokenFallback(address from, uint256 value, bytes calldata data) external override {
         emit TokenFallbackCalled(from, value, data);
     }
 }
