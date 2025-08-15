@@ -16,17 +16,21 @@ contract SafeBurnTokenTest is Test {
     /*
      * Test successful burn with valid decimals.
      */
+
     function testBurnWithValidDecimals() public {
         uint256 burnValue = 10;
         uint256 decimals = 18; // common decimals
 
         uint256 burnAmount = burnValue * (10 ** decimals);
+        uint256 initialBalance = token.balanceOf(owner);
+        uint256 initialTotalSupply = token.totalSupply();
 
         bool success = token.burnWithDecimals(burnValue, decimals);
         assertTrue(success, "Burn should succeed");
 
-        assertEq(token.balanceOf(owner), token.totalSupply() - burnAmount);
-        assertEq(token.totalSupply(), 1_000_000 * 10 ** 18 - burnAmount);
+        // After burning, both balance and totalSupply should be reduced by burnAmount
+        assertEq(token.balanceOf(owner), initialBalance - burnAmount);
+        assertEq(token.totalSupply(), initialTotalSupply - burnAmount);
     }
 
     /*
